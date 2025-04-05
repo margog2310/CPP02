@@ -16,6 +16,6 @@ class   Fixed
         ~Fixed(); // destructor
         int getRawBits() const; // returns raw value of fixed-point value
         void    setRawBits(int const raw); // sets raw value of fixed point number
-}
+} ;
 
 #endif
