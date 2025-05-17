@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 21:29:26 by mganchev          #+#    #+#             */
-/*   Updated: 2025/04/06 22:40:49 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/05/17 19:36:54 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int main()
 {
     const Point a;
-    const Point b(Fixed(5), Fixed(0));
-    const Point c(Fixed(0), Fixed(5));
+    const Point b(5, 0);
+    const Point c(0, 5);
 
     const Point inside(2, 2);
     const Point outside(6, 6);

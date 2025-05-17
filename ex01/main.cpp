@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 19:41:07 by mganchev          #+#    #+#             */
-/*   Updated: 2025/05/01 23:26:25 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/05/17 19:11:08 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int main()
     std::cout << "b is " << b << std::endl;
     std::cout << "c is " << c << std::endl;
     std::cout << "d is " << d << std::endl;
+
+    std::cout << "a is " << a.getRawBits() << std::endl;
+    std::cout << "b is " << b.getRawBits() << std::endl;
+    std::cout << "c is " << c.getRawBits() << std::endl;
+    std::cout << "d is " << d.getRawBits() << std::endl;
 
     std::cout << "a is " << a.toInt() << " as an Integer" << std::endl;
     std::cout << "b is " << b.toInt() << " as an Integer" << std::endl;

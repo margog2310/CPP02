@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 19:41:15 by mganchev          #+#    #+#             */
-/*   Updated: 2025/04/06 21:53:08 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/05/17 19:42:13 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Fixed::Fixed(): _fixedPointValue(0) {}
 
 Fixed::Fixed(const Fixed& f)
 {
-    _fixedPointValue = f._fixedPointValue;
+    *this = f;
 }
 
 Fixed::Fixed(const int value)
@@ -26,34 +26,34 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-    _fixedPointValue = static_cast<int>(value * (1 << _fractionalBits));
+    _fixedPointValue = roundf(value * (1 << _fractionalBits));
 }
 
 Fixed& Fixed::operator=(const Fixed& f)
 {
     if (this != &f)
-        this->_fixedPointValue = f._fixedPointValue;
+        this->_fixedPointValue = f.getRawBits();
     return *this;
 }
 
-Fixed Fixed::operator+(const Fixed& f)
+float Fixed::operator+(const Fixed& f) const
 {
-    return Fixed(this->toFloat() + f.toFloat());
+    return this->toFloat() + f.toFloat();
 }
 
-Fixed Fixed::operator-(const Fixed& f)
+float Fixed::operator-(const Fixed& f) const
 {
-    return Fixed(this->toFloat() - f.toFloat());
+    return this->toFloat() - f.toFloat();
 }
 
-Fixed Fixed::operator*(const Fixed& f)
+float Fixed::operator*(const Fixed& f) const
 {
-    return Fixed(this->toFloat() * f.toFloat());
+    return this->toFloat() * f.toFloat();
 }
 
-Fixed Fixed::operator/(const Fixed& f)
+float Fixed::operator/(const Fixed& f) const
 {
-    return Fixed(this->toFloat() / f.toFloat());
+    return this->toFloat() / f.toFloat();
 }
 
 bool Fixed::operator<(const Fixed& f) const
@@ -78,12 +78,12 @@ bool Fixed::operator<=(const Fixed& f) const
 
 bool Fixed::operator==(const Fixed& f) const
 {
-    return static_cast<bool>(f.toFloat());
+    return (this->toFloat() == f.toFloat());
 }
 
 bool Fixed::operator!=(const Fixed& f) const
 {
-    return static_cast<bool>(f.toFloat());
+    return (this->toFloat() != f.toFloat());
 }
 
 Fixed Fixed::operator++(int)

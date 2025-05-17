@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 19:41:19 by mganchev          #+#    #+#             */
-/*   Updated: 2025/04/06 21:53:12 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/05/17 19:41:21 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ class Fixed
 	Fixed(const float value);
 	Fixed &operator=(const Fixed &f);
 	// copy assignment operator overload > "overloads" = operator
-	Fixed operator+(const Fixed &f);
-	Fixed operator-(const Fixed &f);
-	Fixed operator*(const Fixed &f);
-	Fixed operator/(const Fixed &f);
+	float operator+(const Fixed &f) const;
+	float operator-(const Fixed &f) const;
+	float operator*(const Fixed &f) const;
+	float operator/(const Fixed &f) const;
 	Fixed operator++(int); // postfix increment
 	Fixed operator--(int);
 	Fixed &operator++(); // prefix increment

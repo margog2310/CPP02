@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 19:41:15 by mganchev          #+#    #+#             */
-/*   Updated: 2025/04/05 20:46:18 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/05/17 19:24:00 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Fixed::Fixed(): _fixedPointValue(0) {}
 
 Fixed::Fixed(const Fixed& f)
 {
-    _fixedPointValue = f._fixedPointValue;
+    *this = f;
 }
 
 Fixed::Fixed(const int value)
@@ -26,13 +26,13 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-    _fixedPointValue = static_cast<int>(value * (1 << _fractionalBits));
+    _fixedPointValue = roundf(value * (1 << _fractionalBits));
 }
 
 Fixed& Fixed::operator=(const Fixed& f)
 {
     if (this != &f)
-        this->_fixedPointValue = f._fixedPointValue;
+        this->_fixedPointValue = f.getRawBits();
     return *this;
 }
 
@@ -78,25 +78,25 @@ bool Fixed::operator<=(const Fixed& f) const
 
 bool Fixed::operator==(const Fixed& f) const
 {
-    return static_cast<bool>(f.toFloat());
+    return (this->toFloat() == f.toFloat());
 }
 
 bool Fixed::operator!=(const Fixed& f) const
 {
-    return static_cast<bool>(f.toFloat());
+    return (this->toFloat() != f.toFloat());
 }
 
 Fixed Fixed::operator++(int)
 {
     Fixed temp = *this;
     
-    this->_fixedPointValue += 1;
+    ++this->_fixedPointValue;
     return temp;
 }
 
 Fixed& Fixed::operator++()
 {
-    this->_fixedPointValue += 1;
+    this->_fixedPointValue++;
     return *this;
 }
 
@@ -104,13 +104,13 @@ Fixed Fixed::operator--(int)
 {
     Fixed temp = *this;
     
-    this->_fixedPointValue -= 1;
+    --this->_fixedPointValue;
     return temp;
 }
 
 Fixed& Fixed::operator--()
 {
-    this->_fixedPointValue -= 1;
+    this->_fixedPointValue--;
     return *this;
 }
 
